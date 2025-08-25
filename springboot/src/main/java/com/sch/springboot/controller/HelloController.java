@@ -1,11 +1,54 @@
 package com.sch.springboot.controller;
 
+import com.sch.springboot.domain.Hello;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class HelloController {
+
+    /** Hello 객체 정의 */
+//    class Hello{
+//        private String name;
+//        private int age;
+//
+//        public String getName() {
+//            return name;
+//        }
+//        public int getAge() {
+//            return age;
+//        }
+//
+//        public void setName(String name) {
+//            this.name = name;
+//        }
+//
+//        public void setAge(int age) {
+//            this.age = age;
+//        }
+//    }
+
+    @ResponseBody
+    @GetMapping("/spring-json")
+    public Hello springJson() {
+        Hello helloObject = new Hello();
+        helloObject.setName("spring");
+        helloObject.setAge(30);
+
+        return helloObject;
+    }
+
+    @GetMapping("/spring-api")
+    @ResponseBody
+    public String springApi(@RequestParam("name") String name, Model model) {
+        model.addAttribute("name", name);
+        return model.toString();
+    }
+
 
     @GetMapping("/spring-mvc")
     public String springMvc(Model model) {
