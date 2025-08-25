@@ -34,10 +34,10 @@ public class HelloController {
 
     @ResponseBody
     @GetMapping("/spring-json")
-    public Hello springJson() {
+    public Hello springJson(@RequestParam("name") String name, @RequestParam("age") int age) {
         Hello helloObject = new Hello();
-        helloObject.setName("spring");
-        helloObject.setAge(30);
+        helloObject.setName(name);
+        helloObject.setAge(age);
 
         return helloObject;
     }
