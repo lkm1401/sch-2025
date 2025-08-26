@@ -5,11 +5,21 @@ public class Member {
     private String name;
     private int age;
     private String address;
+    private String subject;
 
     //Constructor
     public Member() {}
 
     //Method : setter, getter
+
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
     public String getName() {
         return name;
