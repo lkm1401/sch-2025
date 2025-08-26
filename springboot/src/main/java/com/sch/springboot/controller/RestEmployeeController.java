@@ -18,8 +18,8 @@ public class RestEmployeeController {
      */
     @PostMapping("/employees/register")
     public String register(@RequestBody Employee employee) {
-        System.out.println(employee.getName());
-        System.out.println(employee.getAddress());
+//        System.out.println(employee.getName());
+//        System.out.println(employee.getAddress());
         employees.add(employee);
 
         return "ok";
@@ -30,7 +30,7 @@ public class RestEmployeeController {
      */
     @GetMapping("/employees")
     public  List<Employee> list() {
-        System.out.println(employees.size());
+//        System.out.println(employees.size());
         return employees;
     }
 }
