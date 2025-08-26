@@ -1,10 +1,15 @@
-package com.sch.springboot.domain;
+package com.sch.springboot.dto;
 
-public class SendDomain {
+public class Member {
+    //Field
     private String name;
     private int age;
     private String address;
 
+    //Constructor
+    public Member() {}
+
+    //Method : setter, getter
 
     public String getName() {
         return name;
@@ -14,14 +19,6 @@ public class SendDomain {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public int getAge() {
         return age;
     }
@@ -29,4 +26,19 @@ public class SendDomain {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
+
+
+
+
+
+
+
