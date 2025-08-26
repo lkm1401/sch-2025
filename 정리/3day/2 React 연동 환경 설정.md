@@ -39,6 +39,8 @@
 <!-- <img src="../images/6/6-12.png" alt="project" width="500"/><br> -->
 <!-- <img src="../images/6/6-13.png" alt="project" width="500"/><br><br> -->
 
+<br><br>
+
 **4) nodemon, axios 라이브러리 설치**
 
 명령어 > npm install -g nodemon
