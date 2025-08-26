@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
 public class UserController {
 
@@ -14,14 +16,14 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/login")
-    public String login(User user){
-        return userService.login(user);
+    public Map<String, Object> login(User user){
+        return userService.login(user);  //Map<String, Object>
     }
 
 
     @ResponseBody
     @PostMapping("/signup")
-    public String signup(User user){
+    public Map<String, String> signup(User user){
         return userService.signUp(user);
     }
 }
