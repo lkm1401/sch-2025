@@ -33,31 +33,31 @@ spring.jpa.hibernate.ddl-auto=none
 ### 2.2 Entity 객체 생성
 
 - 라이브러리 설치 확인 - External Libraries
-- 기존 domain/Member.java ⇒ Entitly 객체로 전환
+- 기존 dto/Employee.java ⇒ Entitly 객체로 전환
 
 ```java
-package edu.sch.springboot.domain;
+package com.sch.springboot.dto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
 
-@Entity  //JPA가 관리하는 객체가 됨
-public class Member {
+@Entity
+public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long sno;
     private String name;
+    private String department;
+    private String address;
 
-    public Long getId() {
-        return id;
+    public Long getSno() {
+        return sno;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSno(Long sno) {
+        this.sno = sno;
     }
 
     public String getName() {
@@ -67,58 +67,78 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
+
 ```
 
 ### 2.3 JPA용 Repository 객체 생성
 
-- repository/JpaMemberRepository.java
+- EmployeeRepositoryInterface.java : insert 메소드 리턴 타입을 Long으로 수정
 
 ```java
-package edu.sch.springboot.repository;
+package com.sch.springboot.repository;
 
-import edu.sch.springboot.domain.Member;
+import com.sch.springboot.dto.Employee;
+
+import java.util.List;
+
+public interface EmployeeRepositoryInterface {
+    List<Employee> selectAll();
+    Long insert(Employee employee);
+}
+
+```
+
+- repository/JpaEmployeeRepository.java
+
+```java
+package com.sch.springboot.repository;
+
+import com.sch.springboot.dto.Employee;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class JpaMemberRepository implements MemberRepository{
+public class JpaEmployeeRepository implements EmployeeRepositoryInterface {
 
     private final EntityManager em;
 
-    public JpaMemberRepository(EntityManager em) {
+    public JpaEmployeeRepository(EntityManager em) {
         this.em = em;
     }
 
+    /** 사원 등록 */
     @Override
-    public Member save(Member member) {
-        em.persist(member);
-        return member;
+    public Long insert(Employee employee) {
+        em.persist(employee);
+        return employee.getSno();
     }
 
+    /** 사원 리스트 조회 */
     @Override
-    public Optional<Member> findById(Long id) {
-        Member member = em.find(Member.class, id);
-        return Optional.ofNullable(member);
-    }
-
-    @Override
-    public Optional<Member> findByName(String name) {
-        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
-                .setParameter("name", name)
-                .getResultList();
-
-        return result.stream().findAny();
-    }
-
-    @Override
-    public List<Member> findAll() {
-        return em.createQuery("select m from Member m", Member.class)
+    public List<Employee> selectAll() {
+        return em.createQuery("select m from Employee m", Employee.class)
                 .getResultList();
     }
 }
+
 
 ```
 
@@ -129,38 +149,53 @@ public class JpaMemberRepository implements MemberRepository{
 - JPA를 사용하여 데이터를 저장하거나 업데이트 할때는 반드시 트랜잭션 작업이 필요함
 
 ```java
+package com.sch.springboot.service;
+
+import com.sch.springboot.dto.Employee;
+import com.sch.springboot.repository.JpaEmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @Service
-public class MemberService {
-    private final JdbcTemplateMemberRepository memberDao;
+public class EmployeeService {
 
-	   ...
-```
-
-2. memberDao 객체의 클래스 타입을 JpaMemberRepository로 수정
-
-```java
-@Transactional
-@Service
-public class MemberService {
-    private final JpaMemberRepository memberDao;
+    private final JpaEmployeeRepository employeeRepository;
 
     @Autowired
-    public MemberService(JpaMemberRepository memberDao) {
-        this.memberDao = memberDao;
+    public EmployeeService(JpaEmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
-	...
+
+    //사원리스트
+    public List<Employee> findAll(){
+        return employeeRepository.selectAll();
+    }
+
+    //사원등록
+    public Long register(Employee employee) {
+        return employeeRepository.insert(employee);
+    }
+}
+
 ```
 
-<!-- [Thymeleaf] -->
+### 2.4 App.js
 
-<!-- [화면 기록 2024-08-23 오전 12.07.44.mov](8-7%20JPA%20%EC%8B%A4%EC%8A%B5%20254bc73a7cba817d899bdfc5390334ea/%25E1%2584%2592%25E1%2585%25AA%25E1%2584%2586%25E1%2585%25A7%25E1%2586%25AB_%25E1%2584%2580%25E1%2585%25B5%25E1%2584%2585%25E1%2585%25A9%25E1%2586%25A8_2024-08-23_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_12.07.44.mov) -->
-
-<img src="../images/7/29.png" alt="project" width="700"/><br><br>
-
-[React]
-
-<!-- [화면 기록 2024-08-23 오전 12.12.56.mov](8-7%20JPA%20%EC%8B%A4%EC%8A%B5%20254bc73a7cba817d899bdfc5390334ea/%25E1%2584%2592%25E1%2585%25AA%25E1%2584%2586%25E1%2585%25A7%25E1%2586%25AB_%25E1%2584%2580%25E1%2585%25B5%25E1%2584%2585%25E1%2585%25A9%25E1%2586%25A8_2024-08-23_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_12.12.56.mov) -->
-
-<img src="../images/7/30.png" alt="project" width="700"/><br><br>
+```javascript
+axios
+  .post("http://localhost:8080/api/employees/register", data)
+  .then((response) => {
+    // console.log(response.data);
+    if (response.data !== 0) {
+      alert("가입이 완료되었습니다");
+      props.handleChangePage("home");
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```

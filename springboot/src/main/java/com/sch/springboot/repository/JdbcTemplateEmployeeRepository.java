@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class JdbcTemplateEmployeeRepository implements EmployeeRepositoryInterface {
+public class JdbcTemplateEmployeeRepository  {
     //사원객체를 저장하는 List<Employee>
     private List<Employee> list = new ArrayList<Employee>();
     private final JdbcTemplate jdbcTemplate;
@@ -21,7 +21,7 @@ public class JdbcTemplateEmployeeRepository implements EmployeeRepositoryInterfa
     }
 
     /** 사원 등록 */
-    @Override
+//    @Override
     public int insert(Employee employee) {
         String sql = "insert into employee (name, address, department) VALUES (?, ?, ?)";
         int rows = jdbcTemplate.update(sql, employee.getName(), employee.getAddress(), employee.getDepartment());
@@ -29,7 +29,7 @@ public class JdbcTemplateEmployeeRepository implements EmployeeRepositoryInterfa
     }
 
     /** 사원 리스트 조회 */
-    @Override
+//    @Override
     public List<Employee> selectAll() {
         String sql = "SELECT sno, name, address, department FROM employee";
         return jdbcTemplate.query(sql,

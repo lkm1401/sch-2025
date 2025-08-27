@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface EmployeeRepositoryInterface {
     List<Employee> selectAll();
-    int insert(Employee employee);
+    Long insert(Employee employee);
 }

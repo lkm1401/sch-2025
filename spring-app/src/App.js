@@ -53,7 +53,7 @@ function EmployeeRegister(props) {
       .post("http://localhost:8080/api/employees/register", data)
       .then((response) => {
         // console.log(response.data);
-        if (response.data === 1) {
+        if (response.data !== 0) {
           alert("가입이 완료되었습니다");
           props.handleChangePage("home");
         }

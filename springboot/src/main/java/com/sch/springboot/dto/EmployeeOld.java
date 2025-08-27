@@ -1,14 +1,6 @@
 package com.sch.springboot.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Employee {
-
-    @Id
+public class EmployeeOld {
     private Long sno;
     private String name;
     private String department;

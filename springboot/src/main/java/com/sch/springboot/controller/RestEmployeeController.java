@@ -3,6 +3,7 @@ package com.sch.springboot.controller;
 import com.sch.springboot.dto.Employee;
 import com.sch.springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,9 @@ public class RestEmployeeController {
 
     //React --> 사원등록
     @PostMapping("/employees/register")
-    public int employeeRegister(@RequestBody Employee employee) {
-        return employeeService.register(employee);
+    public ResponseEntity<Long> employeeRegister(@RequestBody Employee employee) {
+        Long sno = employeeService.register(employee);
+        return ResponseEntity.ok(sno);
     }
 
     //React --> 사원리스트
