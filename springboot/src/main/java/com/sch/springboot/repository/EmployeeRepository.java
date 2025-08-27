@@ -12,6 +12,11 @@ public class EmployeeRepository {
     //사원객체를 저장하는 List<Employee>
     private List<Employee> list = new ArrayList<Employee>(1);
 
+    public List<Employee> selectAll() {
+        return list;
+    }
+
+
     public String insert(Employee employee) {
         String result = "";
         if(list.add(employee)) {

@@ -2,12 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>사원등록 성공</title>
+    <title>사원등록 리스트</title>
 </head>
 <body>
-    <h1>사원 등록 등록!!!</h1>
+    <h1>사원 리스트!!!</h1>
+    <h3 th:text="${list.size()}"></h3>
     <hr>
-    <a href="http://localhost:8080/employeeList.html">사원 리스트</a>&nbsp;&nbsp;&nbsp;
+    <table border="1">
+        <thead>
+            <tr>
+                <th>SNO</th>
+                <th>NAME</th>
+                <th>DEPARTMENT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${list}">
+                <td th:text="${employee.sno}"></td>
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.department}"></td>
+            </tr>
+        </tbody>
+    </table>
     <a href="http://localhost:8080/employeeRegister.html">사원 등록</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
