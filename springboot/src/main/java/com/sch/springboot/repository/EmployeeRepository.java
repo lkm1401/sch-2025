@@ -10,10 +10,15 @@ import java.util.List;
 public class EmployeeRepository {
 
     //사원객체를 저장하는 List<Employee>
-    private List<Employee> list = new ArrayList<Employee>();
+    private List<Employee> list = new ArrayList<Employee>(1);
 
     public String insert(Employee employee) {
-        list.add(employee);
-        return "success";
+        String result = "";
+        if(list.add(employee)) {
+            result = "success";
+        } else {
+            result = "fail";
+        }
+        return result;
     }
 }

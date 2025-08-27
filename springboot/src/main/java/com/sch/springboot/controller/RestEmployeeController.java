@@ -4,10 +4,7 @@ import com.sch.springboot.dto.Employee;
 import com.sch.springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RestEmployeeController {
@@ -22,6 +19,9 @@ public class RestEmployeeController {
 
     @PostMapping("/register")
     public String register(Employee employee){
-        return employeeService.register(employee);
+        String result = employeeService.register(employee);
+        System.out.println(result);
+        return result;
     }
+
 }
