@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RestEmployeeController {
 
     EmployeeService employeeService;
@@ -19,6 +21,19 @@ public class RestEmployeeController {
     public RestEmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+
+    //React --> 사원등록
+    @PostMapping("/employees/register")
+    public String employeeRegister(@RequestBody Employee employee) {
+        return employeeService.register(employee);
+    }
+
+    //React --> 사원리스트
+    @GetMapping("/employees")
+    public List<Employee> employees () {
+        return employeeService.findAll();
+    }
+
 
     @PostMapping("/register")
     public String register(Employee employee){
