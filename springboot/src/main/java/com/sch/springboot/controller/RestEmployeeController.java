@@ -19,9 +19,7 @@ public class RestEmployeeController {
 
     @PostMapping("/register")
     public String register(Employee employee){
-        String result = employeeService.register(employee);
-        System.out.println(result);
-        return result;
+        return employeeService.register(employee);  //success or fail
     }
 
 }
