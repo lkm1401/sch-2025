@@ -24,7 +24,7 @@ public class RestEmployeeController {
 
     //React --> 사원등록
     @PostMapping("/employees/register")
-    public String employeeRegister(@RequestBody Employee employee) {
+    public int employeeRegister(@RequestBody Employee employee) {
         return employeeService.register(employee);
     }
 
@@ -35,17 +35,17 @@ public class RestEmployeeController {
     }
 
 
-    @PostMapping("/register")
-    public String register(Employee employee){
-        return employeeService.register(employee);  //success or fail
-    }
-
-    @GetMapping("/list")
-    public String list(Model model){
-        List<Employee> list = employeeService.findAll();
-        model.addAttribute("list",list);
-        return "employeeList";
-    }
+//    @PostMapping("/register")
+//    public int register(Employee employee){
+//        return employeeService.register(employee);  //success or fail
+//    }
+//
+//    @GetMapping("/list")
+//    public String list(Model model){
+//        List<Employee> list = employeeService.findAll();
+//        model.addAttribute("list",list);
+//        return "employeeList";
+//    }
 
 }
 
