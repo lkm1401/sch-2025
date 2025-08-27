@@ -183,7 +183,7 @@ public class EmployeeService {
 
 ```
 
-### 2.4 App.js
+### 2.5 App.js
 
 ```javascript
 axios
