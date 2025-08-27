@@ -11,20 +11,12 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    //생성자를 이용하여 EmployeeRepository를 Loose -> DI
-//    EmployeeRepository employeeRepository;
-
     private final JdbcTemplateEmployeeRepository employeeRepository;
 
     @Autowired
     public EmployeeService(JdbcTemplateEmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
-//    @Autowired
-//    public EmployeeService(EmployeeRepository employeeRepository) {
-//        this.employeeRepository = employeeRepository;
-//    }
 
     //사원리스트
     public List<Employee> findAll(){
