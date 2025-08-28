@@ -53,7 +53,7 @@ function EmployeeRegister(props) {
       .post("http://localhost:8080/api/employees/register", data)
       .then((response) => {
         // console.log(response.data);
-        if (response.data !== 0) {
+        if (response.data === 1) {
           alert("가입이 완료되었습니다");
           props.handleChangePage("home");
         }
@@ -134,6 +134,7 @@ function EmployeeList(props) {
             <th>사원번호</th>
             <th>이름</th>
             <th>주소</th>
+            <th>입사일</th>
           </tr>
         </thead>
         <tbody>
@@ -142,6 +143,7 @@ function EmployeeList(props) {
               <td>{employee.sno}</td>
               <td>{employee.name}</td>
               <td>{employee.address}</td>
+              <td>{employee.edate}</td>
             </tr>
           ))}
         </tbody>

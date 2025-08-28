@@ -1,7 +1,7 @@
 package com.sch.springboot.service;
 
 import com.sch.springboot.dto.Employee;
-import com.sch.springboot.repository.JpaEmployeeRepository;
+import com.sch.springboot.repository.JdbcTemplateEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private final JpaEmployeeRepository employeeRepository;
+    private final JdbcTemplateEmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeService(JpaEmployeeRepository employeeRepository) {
+    public EmployeeService(JdbcTemplateEmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -25,7 +25,7 @@ public class EmployeeService {
     }
 
     //사원등록
-    public Long register(Employee employee) {
+    public int register(Employee employee) {
         return employeeRepository.insert(employee);
     }
 }

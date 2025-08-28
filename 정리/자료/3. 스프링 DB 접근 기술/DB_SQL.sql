@@ -19,18 +19,21 @@ show tables;
         ...
     )
 */
+drop table employee;  -- 테이블 삭제
+
 create table employee (
 	sno		int	primary key,  -- 사원번호
     name	varchar(10),		  -- 이름
-    address	varchar(30)    
+    address	varchar(30),
+    edate	date
 );
 
 -- 테이블 생성 확인
 desc employee;
 
 -- C(create) : 데이터 추가 
-insert into employee(sno, name, address)
-values(1234, '홍길동', '서울시 강남구');
+insert into employee(sno, name, address, edate)
+values(1234, '홍길동', '서울시 강남구', now());
 
 insert into employee(name, sno, address)
 values('이순신', 3456, '서울시 강남구');

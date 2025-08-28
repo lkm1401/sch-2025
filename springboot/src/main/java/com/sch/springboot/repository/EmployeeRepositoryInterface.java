@@ -9,5 +9,5 @@ import java.util.List;
 * */
 public interface EmployeeRepositoryInterface {
     public List<Employee> selectAll();
-    public String insert(Employee employee);
+    public int insert(Employee employee);
 }

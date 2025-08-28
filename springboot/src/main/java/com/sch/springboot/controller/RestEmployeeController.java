@@ -25,9 +25,8 @@ public class RestEmployeeController {
 
     //React --> 사원등록
     @PostMapping("/employees/register")
-    public ResponseEntity<Long> employeeRegister(@RequestBody Employee employee) {
-        Long sno = employeeService.register(employee);
-        return ResponseEntity.ok(sno);
+    public int employeeRegister(@RequestBody Employee employee) {
+        return employeeService.register(employee);
     }
 
     //React --> 사원리스트
