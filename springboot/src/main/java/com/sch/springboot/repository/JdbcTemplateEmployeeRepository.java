@@ -22,18 +22,19 @@ public class JdbcTemplateEmployeeRepository implements EmployeeRepositoryInterfa
 
     @Override
     public List<Employee> selectAll() {
-        String sql = "SELECT sno, name, address, edate FROM employee";
+        String sql = "SELECT sno, name, address, edate, department FROM employee";
         return jdbcTemplate.query(sql,
                 BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
     @Override
     public int insert(Employee employee){
-        String sql = "insert into employee (sno, name, address, edate) VALUES (?, ?, ?, now())";
+        String sql = "insert into employee (sno, name, address, department, edate) VALUES (?, ?, ?, ?,now())";
         int rows = jdbcTemplate.update(sql,
                                         employee.getSno(),
                                         employee.getName(),
-                                        employee.getAddress());
+                                        employee.getAddress(),
+                                        employee.getDepartment());
 
         return rows;
     }

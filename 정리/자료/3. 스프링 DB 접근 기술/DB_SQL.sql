@@ -58,6 +58,11 @@ select * from employee;
 delete from employee where sno = 1234;
 
 select * from employee;
+desc employee;
+
+-- 컬럼 추가 
+alter table employee
+	add column department  varchar(20); 
 
 
 
