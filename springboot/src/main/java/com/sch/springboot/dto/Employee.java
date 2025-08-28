@@ -1,7 +1,11 @@
 package com.sch.springboot.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Employee {
@@ -12,8 +16,18 @@ public class Employee {
     private String name;
     private String department;
     private String address;
-    private String edate;
 
+    @Column(name = "edate", nullable = false)
+    private LocalDateTime edate;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.edate == null) {
+            this.edate = LocalDateTime.now();
+        }
+    }
+
+    /*
     public String getEdate() {
         return edate;
     }
@@ -21,6 +35,8 @@ public class Employee {
     public void setEdate(String edate) {
         this.edate = edate;
     }
+    */
+
 
     public int getSno() {
         return sno;
