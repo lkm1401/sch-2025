@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,26 +18,19 @@ public class Employee {
     private String department;
     private String address;
 
-    @Column(name = "edate", nullable = false)
-    private LocalDateTime edate;
+    @Column(name = "edate", nullable = true)
+    private LocalDate edate;
 
     @PrePersist
     public void prePersist() {
         if (this.edate == null) {
-            this.edate = LocalDateTime.now();
+            this.edate = LocalDate.now();
         }
     }
 
-    /*
-    public String getEdate() {
+    public LocalDate getEdate() {
         return edate;
     }
-
-    public void setEdate(String edate) {
-        this.edate = edate;
-    }
-    */
-
 
     public int getSno() {
         return sno;
