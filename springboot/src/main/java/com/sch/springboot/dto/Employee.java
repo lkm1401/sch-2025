@@ -1,15 +1,14 @@
 package com.sch.springboot.dto;
 
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-//@Entity
+@Entity
 public class Employee {
 
-//    @Id
-    private Long sno;
+    @Id
+    private int sno;
+
     private String name;
     private String department;
     private String address;
@@ -23,11 +22,11 @@ public class Employee {
         this.edate = edate;
     }
 
-    public Long getSno() {
+    public int getSno() {
         return sno;
     }
 
-    public void setSno(Long sno) {
+    public void setSno(int sno) {
         this.sno = sno;
     }
 
