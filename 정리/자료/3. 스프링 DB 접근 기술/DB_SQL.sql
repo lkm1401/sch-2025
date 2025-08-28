@@ -64,7 +64,14 @@ desc employee;
 alter table employee
 	add column department  varchar(20); 
 
+set sql_safe_updates = 0;	-- mysql에서 update/delete 실행 제어 명령, 1(설정:기본값), 0(해제)
 
+update employee set department = 'sales'
+	where department is null;
+
+SELECT * FROM EMPLOYEE;    
+    
+    
 
 
 
