@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class JpaEmployeeRepository implements EmployeeRepositoryInterface {
+public class JpaEmployeeRepository implements EmployeeRepositoryInterface2 {
 
     private final EntityManager em;
 

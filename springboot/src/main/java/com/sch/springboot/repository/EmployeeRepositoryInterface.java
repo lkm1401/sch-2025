@@ -4,7 +4,10 @@ import com.sch.springboot.dto.Employee;
 
 import java.util.List;
 
+/*
+* 인터페이스의 자식을 통해 생성 ---> 자식은 인터페이스의 모든 메소드를 오버라이딩 해야함!!
+* */
 public interface EmployeeRepositoryInterface {
-    List<Employee> selectAll();
-    Long insert(Employee employee);
+    public List<Employee> selectAll();
+    public String insert(Employee employee);
 }
