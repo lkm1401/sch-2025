@@ -131,6 +131,7 @@ function EmployeeRegister(props) {
  */
 function EmployeeList(props) {
   const [employeeList, setEmployeeList] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     axios
@@ -140,25 +141,29 @@ function EmployeeList(props) {
         setEmployeeList(response.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [count]);
+
+  function handleDeleteSuccess() {
+    setCount(count - 1);
+  }
 
    function handleDelete(sno) {
     alert(sno);
     //axios => 스프링부트의 삭제 로직 호출!!
     const data = { sno: sno };
-    /*
+    
     axios
-      .post("http://localhost:8080/api/dwitters/delete", data)
+      .post("http://localhost:8080/api/members/delete", data)
       .then((response) => {
         if (response.data === "ok") {
-          // alert("삭제가 완료되었습니다");
-          props.onSuccessDelete();
+          alert("삭제가 완료되었습니다");
+          handleDeleteSuccess();
         }
       })
       .catch((error) => {
         console.log(error);
       });
-      */
+      
   }
 
   return (
