@@ -3,7 +3,7 @@
 */
 
 -- 	데이터베이스 생성
-create database hrdb_spring;
+create database hrdb_spring;  -- 처음 생성시에만 실행
 
 -- 데이터베이스 확인
 use hrdb_spring;
@@ -69,8 +69,24 @@ set sql_safe_updates = 0;	-- mysql에서 update/delete 실행 제어 명령, 1(�
 update employee set department = 'sales'
 	where department is null;
 
-SELECT * FROM EMPLOYEE;    
-    
+SELECT * FROM EMPLOYEE;   
+
+
+/********************************
+	member 테이블 생성 및 실행
+*********************************/ 
+show tables; 
+drop table member;  
+
+create table member(
+	sno		int		primary key,
+    name	varchar(20),
+    address	varchar(50),
+    department  varchar(50),
+    mdate	datetime
+); 
+desc member;
+select * from member;
     
 
 
