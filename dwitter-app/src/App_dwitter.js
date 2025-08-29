@@ -9,13 +9,13 @@ export default function App_dwitter() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/dwitters")
-      .then((response) => {
-        console.log(response.data);
-        setDwitters(response.data);
-      })
-      .catch();
+    // axios
+    //   .get("http://localhost:8080/api/dwitters")
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     setDwitters(response.data);
+    //   })
+    //   .catch();
   }, [count]);
 
   function handleRegisterSuccess() {
