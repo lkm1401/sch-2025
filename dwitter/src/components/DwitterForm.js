@@ -17,7 +17,8 @@ export default function DwitterForm(props) {
     axios
       .post("http://localhost:8080/api/dwitters/register", data)
       .then((response) => {
-        if (response.data === "ok") {
+        console.log(response.data);
+        if (response.data !== "") {
           //   alert("등록이 완료되었습니다");
           props.onSuccess();
           setName("");

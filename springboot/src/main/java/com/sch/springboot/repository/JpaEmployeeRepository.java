@@ -1,6 +1,6 @@
 package com.sch.springboot.repository;
 
-import com.sch.springboot.dto.Dwitter;
+//import com.sch.springboot.dto.Dwitter;
 import com.sch.springboot.dto.Employee;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;

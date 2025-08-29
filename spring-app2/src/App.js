@@ -54,8 +54,8 @@ function EmployeeRegister(props) {
     axios
       .post("http://localhost:8080/api/members/register", data)
       .then((response) => {
-        // console.log(response.data);
-        if (response.data !== 0) {
+        console.log(response.data);
+        if (response.data !== "") {
           alert("가입이 완료되었습니다");
           props.handleChangePage("home");
         }
@@ -159,7 +159,7 @@ function EmployeeList(props) {
               <td>{employee.name}</td>
               <td>{employee.address}</td>
               <td>{employee.department}</td>
-              <td>{employee.edate}</td>
+              <td>{employee.mdate}</td>
             </tr>
           ))}
         </tbody>

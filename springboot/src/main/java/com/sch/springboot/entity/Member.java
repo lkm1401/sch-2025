@@ -1,7 +1,9 @@
 package com.sch.springboot.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +15,17 @@ public class Member {
     private String name;
     private String address;
     private String department;
+
+    @Column(name="mdate", nullable = true)
     private LocalDateTime mdate;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.mdate == null) {
+            this.mdate = LocalDateTime.now();
+        }
+    }
+
 
     public Long getSno() {
         return sno;
@@ -51,7 +63,4 @@ public class Member {
         return mdate;
     }
 
-    public void setMdate(LocalDateTime mdate) {
-        this.mdate = mdate;
-    }
 }
