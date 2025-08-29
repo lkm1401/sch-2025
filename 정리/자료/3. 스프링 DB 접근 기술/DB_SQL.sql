@@ -87,7 +87,24 @@ create table member(
 ); 
 desc member;
 select * from member;
-    
+select * from member where sno = 61968;
+
+/******************************
+	Dwitter 테이블 생성 및 실행
+*******************************/
+create table dwitter(
+	id	int		auto_increment		primary key,
+    name		varchar(50),
+    message		varchar(255),
+    image		varchar(255),
+    sdate		date
+);   
+
+show tables;
+select * from dwitter; 
+
+select * from dwitter where id = 1;
+delete from dwitter where id = 1;
 
 
 

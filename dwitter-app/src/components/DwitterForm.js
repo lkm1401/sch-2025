@@ -11,14 +11,14 @@ export default function DwitterForm(props) {
       name: name,
       message: message,
       image:
-        // "https://images.unsplash.com/photo-1617624863198-0e4323b6e968?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fCVFQyU5NSVCQyVFQyU5OSVCOHxlbnwwfHwwfHx8MA%3D%3D",
-        "https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=2103&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1617624863198-0e4323b6e968?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fCVFQyU5NSVCQyVFQyU5OSVCOHxlbnwwfHwwfHx8MA%3D%3D",
+        // "https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=2103&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     };
     axios
       .post("http://localhost:8080/api/dwitters/register", data)
       .then((response) => {
         if (response.data === "ok") {
-          //   alert("등록이 완료되었습니다");
+          // alert("등록이 완료되었습니다");
           props.onSuccess();
           setName("");
           setMessage("");
