@@ -21,7 +21,7 @@ public class RestMemberController {
 
     @PostMapping("/members/delete")
     public String deleteMember(@RequestBody Member member) {
-        return "ok";
+        return memberService.delete(member.getSno());
     }
 
     //회원 등록

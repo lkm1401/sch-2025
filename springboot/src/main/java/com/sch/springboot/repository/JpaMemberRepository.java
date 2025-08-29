@@ -18,6 +18,15 @@ public class JpaMemberRepository implements MemberRepositoryInterface {
     }
 
     @Override
+    public String delete(Long sno) {
+        Member findMember = em.find(Member.class, sno);
+        if(findMember != null) {
+            em.remove(findMember);
+        }
+        return "ok";
+    }
+
+    @Override
     public String insert(Member member) {
         em.persist(member);
         return member.getName();
